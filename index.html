@@ -41,7 +41,7 @@
   }).addTo(map);
 
   /* Display a point marker with pop-up text */
-  L.marker([-33.926443, 18.447864]).addTo(map) // EDIT marker coordinates
+  L.marker([0, 0]).addTo(map) // EDIT marker coordinates
   .bindPopup("Lindani was here"); // EDIT pop-up text message
     
     var circle = L.circle([-33.928980, 18.445676], {
@@ -50,8 +50,7 @@
     fillOpacity: 0.5,
     radius: 500
 }).addTo(map);
-    
-    circle.bindPopup("I am a circle.");
+  .bindPopup("I am a circle.");
 
   </script>
 </body>
