@@ -13,6 +13,17 @@
   <style>
   body { margin:0; padding:0; }
   #map { position: absolute; top:0px; bottom:0; right:0; left:0; }
+    
+      #basemaps-wrapper {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    background: white;
+    padding: 10px;
+  }
+  #basemaps {
+    margin-bottom: 5px;
  
   </style>
 </head>
@@ -24,6 +35,19 @@
 
   <!-- Create the interactive map content with JavaScript (.js) -->
   <script>
+    
+    <div id="basemaps-wrapper" class="leaflet-bar">
+  <select name="basemaps" id="basemaps">
+    <option value="Topographic">Topographic<options>
+    <option value="Streets">Streets</option>
+    <option value="NationalGeographic">National Geographic<options>
+    <option value="Oceans">Oceans<options>
+    <option value="Gray">Gray<options>
+    <option value="DarkGray">Dark Gray<options>
+    <option value="Imagery">Imagery<options>
+    <option value="ShadedRelief">Shaded Relief<options>
+  </select>
+</div>
 
   /* Set up the initial map center and zoom level */
   var map = L.map('map', {
@@ -40,11 +64,6 @@
         <a href="https://carto.com/attribution">CARTO</a>'
   }).addTo(map);
     
-
-control = LayersControl(position='topright')
-l.add_control(control);
-
-
   /* Display a point marker with pop-up text */
   L.marker([-33.22989054825171, 20.438329825496858]).addTo(map) // EDIT marker coordinates
   .bindPopup("Lindani was here"); // EDIT pop-up text message
