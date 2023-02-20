@@ -38,7 +38,8 @@
   Topography: L.tileLayer.wms('http://ows.mundialis.de/services/service?',   {layers: 'TOPO-WMS'}),
   Places: L.tileLayer.wms('http://ows.mundialis.de/services/service?', {layers: 'OSM-Overlay-WMS'})
 };
-  }).addTo(map);
+  L.control.layers(basemaps).addTo(map);
+  basemaps.Topography.addTo(map);;
 
   /* Display a point marker with pop-up text */
   L.marker([-25.342174, 28.174752]).addTo(map) // EDIT marker coordinates
