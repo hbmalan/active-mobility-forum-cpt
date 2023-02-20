@@ -32,12 +32,20 @@
   });
 
   /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
-  L.tileLayer(
+  const basemaps = {
+    Cycling: L.tileLayer(
     'https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=b67a28b0f9574b0f913b1fc42c26882f', {
       attribution: '&copy; <a href="https://osm.org/copyright">\
-        ThuderForest</a> contributors, &copy;\
+        ThunderForest</a> contributors, &copy;\
+        <a href="https://carto.com/attribution">CARTO</a>',
+   GreyBase:  L.tileLayer.wms(
+    'https://api.mapbox.com/styles/v1/hbmalan/cle2i1ly2002x01og9hpygnkx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig', {
+      attribution: '&copy; <a href="https://osm.org/copyright">\
+        Mapbox</a> contributors, &copy;\
         <a href="https://carto.com/attribution">CARTO</a>'
-  }).addTo(map);
+      basemaps.GreyBase.addTo(map);
+    
+    L.control.layers(basemaps).addTo(map);
 
   /* Display a point marker with pop-up text */
   L.marker([-25.342174, 28.174752]).addTo(map) // EDIT marker coordinates
