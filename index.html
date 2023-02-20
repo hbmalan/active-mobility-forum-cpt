@@ -25,25 +25,19 @@
   <script>
 
   /* Set up the initial map center and zoom level */
-  var map = L.map('map', {
+    const map map = L.map('map', {
     center: [-33.976306, 18.537964], // map coordinates
     zoom: 11,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
     scrollWheelZoom: false
   });
 
-  /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
   const basemaps = {
     Cycling: L.tileLayer(
     'https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=b67a28b0f9574b0f913b1fc42c26882f', {
       attribution: '&copy; <a href="https://osm.org/copyright">\
         ThunderForest</a> contributors, &copy;\
         <a href="https://carto.com/attribution">CARTO</a>',
-   GreyBase:  L.tileLayer.wms(
-    'https://api.mapbox.com/styles/v1/hbmalan/cle2i1ly2002x01og9hpygnkx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig', {
-      attribution: '&copy; <a href="https://osm.org/copyright">\
-        Mapbox</a> contributors, &copy;\
-        <a href="https://carto.com/attribution">CARTO</a>'
-      basemaps.GreyBase.addTo(map);
+   basemaps.GreyBase.addTo(map);
     
     L.control.layers(basemaps).addTo(map);
 
