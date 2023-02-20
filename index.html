@@ -12,8 +12,8 @@
   <!-- Position the map and title with Cascading Style Sheet (CSS) -->
   <style>
   body { margin:0; padding:0; }
-  #map { position: absolute; top:0px; bottom:0; right:0; left:0; }
- 
+  #map { position: absolute; top:0; bottom:0; right:0; left:0; }
+  #map-title { position: relative; margin-top: 10px; margin-left: 50px; float: left; background: white; border: 2px solid rgba(0,0,0,0.2); padding: 6px 8px; font-family: Helvetica; font-weight: bold; font-size: 24px; z-index: 800; }
   </style>
 </head>
 <body>
@@ -24,34 +24,24 @@
 
   <!-- Create the interactive map content with JavaScript (.js) -->
   <script>
-    
+
   /* Set up the initial map center and zoom level */
-    var baseMaps = {
-    "Grey Base": greybase,
-    "Cycle Routes Base": cyclebase
-  
-    var map = L.map('map', {
-    center: [-33.981171413305574, 18.506203100170968], // map coordinates
+  var map = L.map('map', {
+    center: [-33.976306, 18.537964], // map coordinates
     zoom: 11,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
-    scrollWheelZoom: true
+    scrollWheelZoom: false
   });
 
   /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
-	  
-  var greybase = L.tileLayer('https://api.mapbox.com/styles/v1/hbmalan/cle2i1ly2002x01og9hpygnkx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig', {
+  L.tileLayer(
+    'https://api.mapbox.com/styles/v1/hbmalan/cle2i1ly2002x01og9hpygnkx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig', {
       attribution: '&copy; <a href="https://osm.org/copyright">\
         Mapbox</a> contributors, &copy;\
         <a href="https://carto.com/attribution">CARTO</a>'
-      
-  var cyclebase = L.tileLayer('https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=b67a28b0f9574b0f913b1fc42c26882f', {
-	attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	apikey: '<b67a28b0f9574b0f913b1fc42c26882f>',
-.addTo(map)});
-	  
- var layerControl = L.control.layers(baseMaps).addTo(map);
-    
+  }).addTo(map);
+
   /* Display a point marker with pop-up text */
-  L.marker([-33.22989054825171, 20.438329825496858]).addTo(map) // EDIT marker coordinates
+  L.marker([-25.342174, 28.174752]).addTo(map) // EDIT marker coordinates
   .bindPopup("Lindani was here"); // EDIT pop-up text message
     
     var circle = L.circle([-33.928980, 18.445676], {
@@ -62,30 +52,6 @@
 }).addTo(map);
     
     circle.bindPopup("Lindani's Work");
-	  
-	var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
-    denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
-    aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
-    
-    var counties = L.esri.featureLayer({
-  url:'https://ndgishub.nd.gov/arcgis/rest/services/All_GovtBoundaries/MapServer/20',
-  style: function(feature) {
-    return {
-      fillOpacity: 0.5,
-      weight: 0.5,
-      color: 'silver',
-      fillColor: getDensityColor(feature.properties.POP10_SQMI)
-    }
-  }
-}).addTo(map)
-    
-    var getDensitySize = function(d) {
-  return d > 100  ? '#7a0177' :
-          d > 50  ? '#c51b8a' :
-          d > 20  ? '#f768a1' :
-          d > 5   ? '#fbb4b9' :
-                    '#feebe2'
-}
 
   </script>
 </body>
