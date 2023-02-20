@@ -32,11 +32,8 @@
   <!-- Display the map and title with HTML division tags  -->
   <div id="map-title">Active Mobility Forum: Cape Town</div>
   <div id="map"></div>
-
-  <!-- Create the interactive map content with JavaScript (.js) -->
-  <script>
-    
-    <div id="basemaps-wrapper" class="leaflet-bar">
+  
+      <div id="basemaps-wrapper" class="leaflet-bar">
   <select name="basemaps" id="basemaps">
     <option value="Topographic">Topographic<options>
     <option value="Streets">Streets</option>
@@ -49,12 +46,18 @@
   </select>
 </div>
 
+  <!-- Create the interactive map content with JavaScript (.js) -->
+  <script>
+    
+
+
   /* Set up the initial map center and zoom level */
   var map = L.map('map', {
     center: [-33.981171413305574, 18.506203100170968], // map coordinates
     zoom: 11,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
     scrollWheelZoom: true
   });
+    var layerLabels;
 
   /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
   L.tileLayer(
