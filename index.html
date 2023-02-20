@@ -28,7 +28,7 @@
   /* Set up the initial map center and zoom level */
   var map = L.map('map', {
     center: [-33.976306, 18.537964], // map coordinates
-    zoom: 11,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
+    zoom: 12,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
     scrollWheelZoom: true
   });
 
@@ -41,7 +41,7 @@
   }).addTo(map);
 
   /* Display a point marker with pop-up text */
-  L.marker([-25.342174, 28.174752]).addTo(map) // EDIT marker coordinates
+  L.marker([-33.981171413305574, 18.506203100170968]).addTo(map) // EDIT marker coordinates
   .bindPopup("Lindani was here"); // EDIT pop-up text message
     
     var circle = L.circle([-33.928980, 18.445676], {
@@ -52,6 +52,26 @@
 }).addTo(map);
     
     circle.bindPopup("Lindani's Work");
+    
+    var counties = L.esri.featureLayer({
+  url:'https://ndgishub.nd.gov/arcgis/rest/services/All_GovtBoundaries/MapServer/20',
+  style: function(feature) {
+    return {
+      fillOpacity: 0.5,
+      weight: 0.5,
+      color: 'silver',
+      fillColor: getDensityColor(feature.properties.POP10_SQMI)
+    }
+  }
+}).addTo(map)
+    
+    var getDensitySize = function(d) {
+  return d > 100  ? '#7a0177' :
+          d > 50  ? '#c51b8a' :
+          d > 20  ? '#f768a1' :
+          d > 5   ? '#fbb4b9' :
+                    '#feebe2'
+}
 
   </script>
 </body>
