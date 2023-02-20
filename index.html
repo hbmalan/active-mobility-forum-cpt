@@ -26,19 +26,36 @@
   <script>
 
   /* Set up the initial map center and zoom level */
-  var map = L.map('map', {
-    center: [-33.976306, 18.537964], // map coordinates
-    zoom: 11,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
-    scrollWheelZoom: false
-  });
+var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+});
 
-  /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
-  L.tileLayer(
-    'https://api.mapbox.com/styles/v1/hbmalan/cle2i1ly2002x01og9hpygnkx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig', {
-      attribution: '&copy; <a href="https://osm.org/copyright">\
-        Mapbox</a> contributors, &copy;\
-        <a href="https://carto.com/attribution">CARTO</a>'
-  }).addTo(map);
+var streets = L.tileLayer(mapboxUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mapboxAttribution});
+
+var map = L.map('map', {
+    center: [39.73, -104.99],
+    zoom: 10,
+    layers: [osm, cities]
+});
+    
+    var baseMaps = {
+    "OpenStreetMap": osm,
+    "Mapbox Streets": streets
+};
+
+var overlayMaps = {
+    "Cities": cities
+};
+    
+    var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+    
+    var baseMaps = {
+    "<span style='color: gray'>Grayscale</span>": grayscale,
+    "Streets": streets
+};
+    
+    layerControl.addBaseLayer(satellite, "Satellite");
 
   /* Display a point marker with pop-up text */
   L.marker([-25.342174, 28.174752]).addTo(map) // EDIT marker coordinates
