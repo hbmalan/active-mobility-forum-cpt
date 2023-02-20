@@ -46,12 +46,23 @@ m.add_basemap("Esri.NatGeoWorldMap")
     
     m = Map(center=(50, 0), zoom=5)
 
-marker1 = Marker(name='marker1', location=(48, -2))
-marker2 = Marker(name='marker2', location=(50, 0))
-marker3 = Marker(name='marker3', location=(52, 2))
-m.add_layer(marker1)
-m.add_layer(marker2)
-m.add_layer(marker3)
+mapnik = basemap_to_tiles(basemaps.OpenStreetMap.Mapnik)
+mapnik.base = True
+mapnik.name = 'Mapnik Layer'
+
+toner = basemap_to_tiles(basemaps.Stamen.Toner)
+toner.base = True
+toner.name = 'Toner Layer'
+
+bzh = basemap_to_tiles(basemaps.OpenStreetMap.BZH)
+bzh.base = True
+bzh.name = 'BZH layer'
+
+m = Map(center=(52, 10), zoom=8, layers=[mapnik, toner, bzh])
+
+m.add_control(LayersControl())
+
+m
 
 control = LayersControl(position='topright')
 m.add_control(control)
