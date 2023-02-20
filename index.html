@@ -39,6 +39,10 @@
         Mapbox</a> contributors, &copy;\
         <a href="https://carto.com/attribution">CARTO</a>'
   }).addTo(map);
+    
+    m = leafmap.Map()
+m.add_basemap("HYBRID")
+m.add_basemap("Esri.NatGeoWorldMap")
 
   /* Display a point marker with pop-up text */
   L.marker([-33.22989054825171, 20.438329825496858]).addTo(map) // EDIT marker coordinates
