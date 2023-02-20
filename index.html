@@ -52,26 +52,31 @@
 
 
   /* Set up the initial map center and zoom level */
-  var map = L.map('map', {
+    var baseMaps = {
+    "Grey Base": greybase,
+    "Cycle Routes Base": cyclebase
+  
+    var map = L.map('map', {
     center: [-33.981171413305574, 18.506203100170968], // map coordinates
     zoom: 11,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
+    layers: [greybase, cyclebase]
     scrollWheelZoom: true
   });
-    var Thunderforest_OpenCycleMap 
-    var layerLabels;
 
   /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
-  L.tileLayer(
+ var greybase = L.tileLayer(
     'https://api.mapbox.com/styles/v1/hbmalan/cle2i1ly2002x01og9hpygnkx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig', {
       attribution: '&copy; <a href="https://osm.org/copyright">\
         Mapbox</a> contributors, &copy;\
         <a href="https://carto.com/attribution">CARTO</a>'
       
-  L.tileLayer('https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey={apikey}', {
+  var cyclebase = L.tileLayer('https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey={apikey}', {
 	attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 	apikey: '<your apikey>',
 });
   }).addTo(map);
+	  
+ var layerControl = L.control.layers(baseMaps).addTo(map);
     
   /* Display a point marker with pop-up text */
   L.marker([-33.22989054825171, 20.438329825496858]).addTo(map) // EDIT marker coordinates
@@ -85,6 +90,10 @@
 }).addTo(map);
     
     circle.bindPopup("Lindani's Work");
+	  
+	var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
+    denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
+    aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
     
     var counties = L.esri.featureLayer({
   url:'https://ndgishub.nd.gov/arcgis/rest/services/All_GovtBoundaries/MapServer/20',
