@@ -40,18 +40,25 @@
         <a href="https://carto.com/attribution">CARTO</a>'
   }).addTo(map);
 
-  /* Display a point marker with pop-up text */
-  L.marker([-25.342174, 28.174752]).addTo(map) // EDIT marker coordinates
-  .bindPopup("Lindani was here"); // EDIT pop-up text message
+  L.marker([-25.342174, 28.174752]).addTo(map)
+  .bindPopup("Lindani was here"); 
+
     
-    var circle = L.circle([-33.928980, 18.445676], {
+    var circle1 = L.circle([-33.928980, 18.445676], {
     color: '#55e73c',
     fillColor: '#55e73c',
     fillOpacity: 0.6,
     radius: 500
 }).addTo(map);
+    circle1.bindPopup("Lindani's Work");
     
-    circle.bindPopup("Lindani's Work");
+    var circle2 = L.circle([-33.969671, 18.474231], {
+    color: '#55e73c',
+    fillColor: '#55e73c',
+    fillOpacity: 0.6,
+    radius: 200
+}).addTo(map);
+    circle2.bindPopup("Hayden's Work");
 
   </script>
 </body>
