@@ -62,19 +62,9 @@
       addMarkers(
     lng = -33.941829 , lat = 18.489475,
     label = "label w/ textsize 15px",
-    labelOptions = labelOptions(noHide = T, textsize = "15px")) %>%;
-      
-              
-        content <- paste(sep = "<br/>",
-  "<b><a href='http://www.samurainoodle.com'>Samurai Noodle</a></b>",
-  "606 5th Ave. S",
-  "Seattle, WA 98138"
-);
+    labelOptions = labelOptions(noHide = T, textsize = "15px")) %>%
+        }).addTo(map);
 
-leaflet() %>% addTiles() %>%
-  addPopups(-33.962506, 18.514404, content,
-    options = popupOptions(closeButton = TRUE)
-;
   </script>
 </body>
 </html>
