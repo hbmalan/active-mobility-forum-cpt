@@ -59,11 +59,16 @@
 }).addTo(map);
     circle2.bindPopup("Hayden's Work");
     
-      addMarkers(
-    lng = -33.941829 , lat = 18.489475,
-    label = "label w/ textsize 15px",
-    labelOptions = labelOptions(noHide = T, textsize = "15px")) %>%
-        }).addTo(map);
+content <- paste(sep = "<br/>",
+  "<b><a href='http://www.samurainoodle.com'>Samurai Noodle</a></b>",
+  "606 5th Ave. S",
+  "Seattle, WA 98138"
+)
+
+leaflet() %>% addTiles() %>%
+  addPopups(-122.327298, 47.597131, content,
+    options = popupOptions(closeButton = FALSE)
+  )
 
   </script>
 </body>
