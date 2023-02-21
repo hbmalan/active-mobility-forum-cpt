@@ -20,25 +20,29 @@
 
   <script>
                
-  const map = L.map('map', {
+   var map = L.map('map', {
     center: [-34.000874, 18.539193],
-    zoom: 12,  //
+    zoom: 12,
     scrollWheelZoom: true
   });
 
-  const basemaps = {
-  GBO: L.tileLayer('https://api.mapbox.com/styles/v1/hbmalan/cle2i1ly2002x01og9hpygnkx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig', {
-      attribution: '&copy; <a href="https://osm.org/copyright">\
-        Mapbox</a> contributors, &copy;\
-        <a href="https://carto.com/attribution">CARTO</a>'}),
-  GBT: L.tileLayer('https://api.mapbox.com/styles/v1/hbmalan/cle2i1ly2002x01og9hpygnkx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig', {
-      attribution: '&copy; <a href="https://osm.org/copyright">\
-        Mapbox</a> contributors, &copy;\
-        <a href="https://carto.com/attribution">CARTO</a>});
-    
-  basemaps.GBO.addTo(map);
-    
-  L.control.layers(basemaps).addTo(map);
+streets = L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
+    accessToken: xxx,
+    maxZoom: 17,
+    minZoom: 9
+}).addTo(map);
+
+cycling_lanes = L.tileLayer('http://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> under <a href="http://www.openstreetmap.org/copyright">ODbL</a>, elevation data by Imagery &copy; <a href="http://cycling.waymarkedtrails.org/en/help/acknowledgements">SRTM/ASTER</a>',
+    maxZoom: 17,
+    minZoom: 9
+}).addTo(map);
+
+running_heat = L.tileLayer('http:globalheat.strava.com/tiles/running/color3/{z}/{x}/{y}.png', {
+    maxZoom: 17,
+    minZoom: 9
+}).addTo(map);
     
   L.marker([-32.328716, 22.133866]).addTo(map)
   .bindPopup("Lindani was here"); 
