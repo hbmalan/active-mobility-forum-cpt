@@ -20,23 +20,18 @@
 
   <script>
                
-  const map = L.map('map', {
+  var map = L.map('map', {
     center: [-34.000874, 18.539193],
     zoom: 12,  //
     scrollWheelZoom: true
   });
 
-  const basemaps = {
-  StreetView: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',   {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}),
-  GreyBase:  L.tileLayer('https://api.mapbox.com/styles/v1/hbmalan/cle2i1ly2002x01og9hpygnkx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig', {
+  L.tileLayer(
+    'https://api.mapbox.com/styles/v1/hbmalan/cle2i1ly2002x01og9hpygnkx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig', {
       attribution: '&copy; <a href="https://osm.org/copyright">\
         Mapbox</a> contributors, &copy;\
         <a href="https://carto.com/attribution">CARTO</a>'
   }).addTo(map);
-    
-  L.control.layers(basemaps).addTo(map);
-    
-  basemaps.StreetView.addTo(map);
 
   L.marker([-32.328716, 22.133866]).addTo(map)
   .bindPopup("Lindani was here"); 
