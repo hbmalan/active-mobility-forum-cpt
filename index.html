@@ -24,6 +24,8 @@
   <!-- Create the interactive map content with JavaScript (.js) -->
   <script>
 
+    content <- paste(sep = "<br/>";
+                 
   /* Set up the initial map center and zoom level */
   var map = L.map('map', {
     center: [-33.976306, 18.537964], // map coordinates
@@ -49,7 +51,6 @@
     fillOpacity: 0.6,
     radius: 500
 }).addTo(map);
-    content <- paste(sep = "<br/>",
     circle1.bindPopup("<b><a href='http://www.samurainoodle.com'>Samurai Noodle</a></b>",
   "606 5th Ave. S",
   "Seattle, WA 98138");
