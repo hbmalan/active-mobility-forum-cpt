@@ -28,7 +28,7 @@
   var map = L.map('map', {
     center: [-33.976306, 18.537964], // map coordinates
     zoom: 11,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
-    scrollWheelZoom: false
+    scrollWheelZoom: true
   });
 
   /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
@@ -49,6 +49,7 @@
     fillOpacity: 0.6,
     radius: 500
 }).addTo(map);
+    content <- paste(sep = "<br/>",
     circle1.bindPopup("<b><a href='http://www.samurainoodle.com'>Samurai Noodle</a></b>",
   "606 5th Ave. S",
   "Seattle, WA 98138");
