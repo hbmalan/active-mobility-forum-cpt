@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
 
-  <!-- Load Leaflet code library: see https://leafletjs.com/download.html -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
 
-  <!-- Position the map and title with Cascading Style Sheet (CSS) -->
   <style>
   body { margin:0; padding:0; }
   #map { position: absolute; top:0; bottom:0; right:0; left:0; }
@@ -18,20 +16,16 @@
 </head>
 <body>
 
-  <!-- Display the map and title with HTML division tags  -->
   <div id="map"></div>
 
-  <!-- Create the interactive map content with JavaScript (.js) -->
   <script>
-                 
-  /* Set up the initial map center and zoom level */
+               
   var map = L.map('map', {
-    center: [-34.000874, 18.539193], // map coordinates
-    zoom: 12,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
+    center: [-34.000874, 18.539193],
+    zoom: 12,  //
     scrollWheelZoom: true
   });
 
-  /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
   L.tileLayer(
     'https://api.mapbox.com/styles/v1/hbmalan/cle2i1ly2002x01og9hpygnkx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig', {
       attribution: '&copy; <a href="https://osm.org/copyright">\
