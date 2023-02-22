@@ -20,27 +20,19 @@
 
   <script>
                
-   var map = L.map('map', {
+  var map = L.map('map', {
     center: [-34.000874, 18.539193],
-    zoom: 12,
+    zoom: 12,  //
     scrollWheelZoom: true
   });
 
-streets = L.tileLayer(
+  L.tileLayer(
     'https://api.mapbox.com/styles/v1/hbmalan/cle2i1ly2002x01og9hpygnkx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig', {
       attribution: '&copy; <a href="https://osm.org/copyright">\
         Mapbox</a> contributors, &copy;\
         <a href="https://carto.com/attribution">CARTO</a>'
   }).addTo(map);
 
-cycling_lanes = L.tileLayer('http://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> under <a href="http://www.openstreetmap.org/copyright">ODbL</a>, elevation data by Imagery &copy; <a href="http://cycling.waymarkedtrails.org/en/help/acknowledgements">SRTM/ASTER</a>',
-    maxZoom: 17,
-    minZoom: 9
-}).addTo(map);
-
-L.control.layers(map).addTo(map);
-    
   L.marker([-32.328716, 22.133866]).addTo(map)
   .bindPopup("Lindani was here"); 
 
