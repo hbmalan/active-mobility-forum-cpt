@@ -85,11 +85,9 @@ tr:nth-child(1) {
 
       basemaps.Base.addTo(map);
 
-      L.control.layers(basemaps).addTo(map);
 
-      // const marker10 = L.marker([-37.6703, 176.212]).addTo(map);
 
-      const organisations = [
+      var organisations = [
         {
           coordinates: [-33.92898, 18.445676],
           name: "Ciovita",
@@ -139,6 +137,7 @@ tr:nth-child(1) {
           address: "https://www.trailangels.co.za",
         },
       ];
+
       const maxCyclistsCount = Math.max(
         ...organisations.map((organisation) => organisation.cyclistsCount)
       );
@@ -191,11 +190,11 @@ tr:nth-child(1) {
         layer.bindPopup(feature.properties.popupContent);
     }
 }
-var Lanes = [{
+const Lanes = [{
     "type": "Feature",
-    "properties": {"Proposal": "1",
+    "properties": {"Proposal": "1"},
     // desired popup content: Proposal link: https://drive.google.com/file/d/15WWit5D0bZhEde_4Msf28j5vZ-5KssLI/view?usp=share_link
-    "popupContent": "Proposal 1"},
+    // "popupContent": "Proposal 1"},
     "geometry": {
         "type": "MultiLineString",
         "coordinates": [[[ 18.446459, -33.926443 ], [ 18.448485, -33.926649 ], [ 18.451038, -33.926934 ], [ 18.452939, -33.927202 ], [ 18.455331, -33.927407 ], [ 18.456598, -33.927595 ], [ 18.458767, -33.928094 ], [ 18.459236, -33.928224 ], [ 18.459673, -33.928309 ], [ 18.460575, -33.928545 ], [ 18.462079, -33.928889 ], [ 18.464007, -33.929371 ], [ 18.466426, -33.929969 ], [ 18.468773, -33.930549 ], [ 18.469425, -33.930701 ], [ 18.47009, -33.930772 ], [ 18.470696, -33.930835 ], [ 18.471344, -33.930964 ], [ 18.47144, -33.931002 ]
@@ -204,9 +203,9 @@ var Lanes = [{
 }, {
     "type": "Feature",
     "properties": {
-      "Proposal": "2",
+      "Proposal": "2"},
        // desired popup content: Proposal link: https://drive.google.com/file/d/1vmV7QYmNqpeJqVHWUCDNd7UgZ6wX5JYN/view?usp=share_link
-      "popupContent": "Proposal 2"},
+      // "popupContent": "Proposal 2"},
     "geometry": {
         "type": "MultiLineString",
         "coordinates": [[[ 18.418229, -33.920995 ], [ 18.419104, -33.920187 ], [ 18.420081, -33.91929 ], [ 18.421076, -33.91838 ], [ 18.422071, -33.91747 ], [ 18.422661, -33.916925 ], [ 18.422821, -33.916858 ], [ 18.42312, -33.916778 ], [ 18.423401, -33.916639 ]
@@ -223,19 +222,20 @@ var Lanes = [{
         ]]
     }
 }];
+var CyclingGroups = L.layerGroup([Lanes, organisations]);
+
+var overlayMaps = {
+    "CyclingGroups": CyclingGroups
+};
+L.control.layers(basemaps, overlayMaps).addTo(map);
 
 L.geoJSON(Lanes, {
     style: function(feature) {
         switch (feature.properties.Proposal) {
-            case '1': return {color: "#6b3b27"};
-            case '2':   return {color: "#6b3b27"};
+            case '1': return {color: "#6b3b27", dashArray: "3,4"};
+            case '2':   return {color: "#6b3b27", dashArray: "3,4"};
             case '3':   return {color: "#6b3b27"};
-            case '3':   return {dasharray: "10,20"};
         }}
-    //   {
-    //     onEachFeature: function(properties.Proposal) {
-    // feature.bindPopup('<h1>'+feature.properties.Proposal+'</h1><p>name: '+feature.properties.f2+'</p>');
-    // }
 }).addTo(map);
     </script>
   </body>
