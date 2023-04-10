@@ -34,9 +34,10 @@
         .overlay-map {
       display: block;
       }
-      a {
-    color: #6b3b27;
-      }
+      .brown a {
+        color: #6b3b27;
+        text-decoration: none;
+    }
     </style>
   </head>
   <body>
@@ -120,7 +121,7 @@
           cyclistsCount: 329,
           genre: "Club",
           representative: "Mat Keiser",
-          address: "<a href=https://www.instagram.com/mother_amateur_bicycling_club/</td></tr>>website</a>",
+          address: "https://www.instagram.com/mother_amateur_bicycling_club/</td></tr>>website</a>",
         },
         {
           coordinates: [-33.99713886723101, 18.45176222264877],
@@ -182,7 +183,7 @@ organisations.forEach((organisation) => {
           <tr><th>Cyclist Genre</th><td>${org.genre}</td></tr>
           <tr><th>Number of Cyclists</th><td>${org.cyclistsCount}</td></tr>
           <tr><th>Representative</th><td>${org.representative}</td></tr>
-          <tr><th>(Optional)<br>Contact Link</th><td><a href="https://www.ciovita.co.za/">website</a></td></tr>
+          <tr><th>(Optional)<br>Contact Link</th><td><div class=\"brown\"><a href="https://www.ciovita.co.za/">Website</a></td></tr>
         </table>
       `;
       this.bindPopup(popupContent).openPopup();
@@ -203,7 +204,7 @@ const Lanes = [{
      "type": "Feature",
   "properties": {
     "proposal": "1",
-    "link": "<a href='https://drive.google.com/file/d/1vmV7QYmNqpeJqVHWUCDNd7UgZ6wX5JYN/view?usp=share_link'>Proposal Document</a>"
+    "link": "<div class=\"brown\"><a href='https://drive.google.com/file/d/1vmV7QYmNqpeJqVHWUCDNd7UgZ6wX5JYN/view?usp=share_link'>Proposal Document</a>"
   },
   "geometry": {
     "type": "MultiLineString",
@@ -214,7 +215,7 @@ const Lanes = [{
   "type": "Feature",
   "properties": {
     "proposal": "2",
-    "link": "<a href='https://drive.google.com/file/d/1vmV7QYmNqpeJqVHWUCDNd7UgZ6wX5JYN/view?usp=share_link'>Proposal Document</a>"
+    "link": "<div class=\"brown\"><a href='https://drive.google.com/file/d/1vmV7QYmNqpeJqVHWUCDNd7UgZ6wX5JYN/view?usp=share_link'>Proposal Document</a>"
   },
   "geometry": {
     "type": "MultiLineString",
