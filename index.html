@@ -34,6 +34,9 @@
         .overlay-map {
       display: block;
       }
+      a {
+    color: #6b3b27;
+      }
     </style>
   </head>
   <body>
@@ -136,7 +139,7 @@
         ...organisations.map((organisation) => organisation.cyclistsCount)
       );
 
-      const maxRadius = 250;
+      const maxRadius = 350;
       const minRadius = 10;
 
       const calculateRadius = (
@@ -155,25 +158,40 @@
 
         return (maxRadius - minRadius) * percentageThrough + minRadius;
       };
+      const organisationsLayer = L.layerGroup();
 
-      organisations.forEach((organisation) => {
+organisations.forEach((organisation) => {
+  const circle = L.circle(organisation.coordinates, {
+    color: "#55e73c",
+    fillColor: "#55e73c",
+    fillOpacity: 0.6,
+    radius: calculateRadius(
+      maxCyclistsCount,
+      minCyclistsCount,
+      maxRadius,
+      minRadius,
+      organisation.cyclistsCount
+    ),
+  }).addTo(map);
 
-        const circle1 = L.circle(organisation.coordinates, {
-          color: "#55e73c",
-          fillColor: "#55e73c",
-          fillOpacity: 0.6,
-          radius: calculateRadius(
-            maxCyclistsCount,
-            minCyclistsCount,
-            maxRadius,
-            minRadius,
-            organisation.cyclistsCount
-          ),
-        }).addTo(map);
-        circle1.bindPopup(
-          `<table><tr><th></th><th>${organisation.name}</th></tr><tr><th>Cyclist Genre<th></td>${organisation.genre}</td></th><strong></strong</th></tr><tr><th>Number of Cyclists<th></td>${organisation.cyclistsCount}</td></tr><tr><th>Representative<th></td>${organisation.representative}</td></tr><tr><th>(Optional)<br>Contact Link<th></td><a href="https://www.ciovita.co.za/</th></tr>">website</a>`
-        );
-      });
+  circle.on("mouseover", (function (org) {
+    return function (e) {
+      const popupContent = `
+        <table>
+          <tr><th></th><th>${org.name}</th></tr>
+          <tr><th>Cyclist Genre</th><td>${org.genre}</td></tr>
+          <tr><th>Number of Cyclists</th><td>${org.cyclistsCount}</td></tr>
+          <tr><th>Representative</th><td>${org.representative}</td></tr>
+          <tr><th>(Optional)<br>Contact Link</th><td><a href="https://www.ciovita.co.za/">website</a></td></tr>
+        </table>
+      `;
+      this.bindPopup(popupContent).openPopup();
+    };
+  })(organisation));
+
+  organisationsLayer.addLayer(circle);
+});
+
 
   // Proposals // 
   function onEachFeature(feature, layer) {
@@ -216,10 +234,9 @@ const Lanes = [{
     }
 }];
 var overlayProposals = L.layerGroup();
-var overlayCircles = L.layerGroup();
 var overlayMaps = {
   "Bicycle Lane Proposals": overlayProposals,
-  "Cycling Groups": overlayCircles
+  "Cycling Groups": organisationsLayer
 };
 L.control.layers(null, basemaps, {collapsed: false}).addTo(map);
 L.control.layers(null, overlayMaps, {collapsed: false}).addTo(map);
@@ -227,14 +244,14 @@ L.control.layers(null, overlayMaps, {collapsed: false}).addTo(map);
 L.geoJSON(Lanes, {
   style: function(feature) {
     switch (feature.properties.proposal) {
-      case '1': return {color: "#6b3b27", dashArray: "3,4"};
+      case '1': return {color: "#6b3b27", dashArray: "3,4", Opacity: 0.2};
       case '2': return {color: "#6b3b27", dashArray: "3,4"};
       case '3': return {color: "#6b3b27"};
     }
   },
   onEachFeature: function(feature, layer) {
     var popupContent = `<table><tr><th>Proposal Name</th><td>${feature.properties.proposal}</td></tr><tr><th>Proposal Link</th><td>${feature.properties.link}</td></tr></table>`;
-    layer.bindPopup(popupContent, { closeButton: false, autoClose: false });
+    layer.bindPopup(popupContent, { closeButton: false, autoClose: true });
     layer.on({
       mouseover: function (e) {
         this.openPopup();
@@ -250,6 +267,9 @@ L.geoJSON(Lanes, {
   }
 }).addTo(overlayProposals);
 
+for (let i in overlayMaps) {
+  overlayMaps[i].addTo(map);
+}
 
     </script>
   </body>
