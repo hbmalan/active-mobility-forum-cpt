@@ -127,8 +127,8 @@
           cyclistsCount: 8,
           genre: "Social Cycle Group",
           representative: "Zamindlela Mkhwanazi",
-          address: "",
           contact: "0791277461",
+          address: "",
         },
         {
           coordinates: [-33.928135, 18.423820],
@@ -214,7 +214,7 @@ organisations.forEach((organisation) => {
           <tr><th>Cyclist Genre</th><td>${org.genre}</td></tr>
           <tr><th>Number of Cyclists</th><td>${org.cyclistsCount}</td></tr>
           <tr><th>Representative</th><td>${org.representative}</td></tr>
-          <tr><th>Contact</th><td><div class=\"brown\"><a ${org.contact}</a></td></tr>
+          <tr><th>Contact</th><td>${org.contact}</td></tr>
           <tr><th>Website (if any)</th><td><div class=\"brown\"><a href="${org.address}">Website</a></td></tr>
         </table>
       `;
