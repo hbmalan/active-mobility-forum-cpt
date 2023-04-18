@@ -207,7 +207,7 @@ organisations.forEach((organisation) => {
     ),
   }).addTo(map);
 
-  circle.on("mouseover", (function (org) {
+  circle.on("click", (function (org) {
     return function (e) {
       const popupContent = `
         <table>
@@ -284,26 +284,82 @@ L.geoJSON(Lanes, {
     }
   },
   onEachFeature: function(feature, layer) {
-    var popupContent = `<table><tr><th>Proposal Name</th><td>${feature.properties.proposal}</td></tr><tr><th>Proposal Link</th><td>${feature.properties.link}</td></tr></table>`;
-    layer.bindPopup(popupContent, { closeButton: false, autoClose: true });
-    layer.on({
-      mouseover: function (e) {
+  var popupContent = `<table><tr><th>Proposal Name</th><td>${feature.properties.proposal}</td></tr><tr><th>Proposal Link</th><td>${feature.properties.link}</td></tr></table>`;
+  layer.bindPopup(popupContent, { closeButton: false, autoClose: true });
+  layer.on({
+    mouseover: function(e) {
+      this.openPopup();
+    },
+    mouseout: function(e) {
+      this.openPopup();
+    },
+    click: function(e) {
+      if (this._popup.isOpen()) {
+        this.closePopup();
+      } else {
         this.openPopup();
-      },
-      click: function (e) {
-        if (this._popup.isOpen()) {
-          this.closePopup();
-        } else {
-          this.openPopup();
-        }
       }
-    });
-  }
+    }
+  });
+}
 }).addTo(overlayProposals);
 
 for (let i in overlayMaps) {
   overlayMaps[i].addTo(map);
 }
+
+// Shops
+var shopsLayer = L.layerGroup().addTo(map); // create a new layer group to hold the markers
+
+var shops = [
+  {
+    coordinates: [-33.928983228168, 18.44067957197337],
+    name: "Woodstock Cycleworks",
+    cyclistsCount: 141,
+    genre: "Bicycle Shop",
+    representative: "Nils Hansen",
+    address: "https://www.woodstockcycleworks.com/",
+  },
+  {
+    coordinates: [-34.03567664054036, 18.471177489234417],
+    name: "Bridge Cycles",
+    cyclistsCount: 141,
+    genre: "Bicycle Shop",
+    representative: "Anisa",
+    address: "https://bridgecycles.co.za/",
+  },
+  {
+    coordinates: [-33.953723474491326, 18.479820053529338],
+    name: "Everyday Cycle Supply Co",
+    cyclistsCount: 141,
+    genre: "Bicycle Shop",
+    representative: "David Malan",
+    address: "https://everydaycyclesupplyco.com/",
+  },
+];
+
+shops.forEach((shop) => {
+  const circle = L.circle(shop.coordinates, {
+    color: "#FFAA22", // add the # symbol to the color value
+    fillColor: "#FFAA22",
+    fillOpacity: 0.9,
+    radius: 30,
+  }).addTo(shopsLayer); // add the circle marker to the shopsLayer
+
+  circle.on("click", function () { // use a simpler function expression
+    const popupContent = `
+      <table>
+        <tr><th></th><th>${shop.name}</th></tr>
+        <tr><th>Cyclist Genre</th><td>${shop.genre}</td></tr>
+        <tr><th>Number of Cyclists</th><td>${shop.cyclistsCount}</td></tr>
+        <tr><th>Representative</th><td>${shop.representative}</td></tr>
+        <tr><th>Contact</th><td>N/A</td></tr> <!-- remove the reference to undefined property -->
+        <tr><th>Website (if any)</th><td><div class="brown"><a href="${shop.address}">Website</a></td></tr> <!-- use shop.address instead of org.address -->
+      </table>
+    `;
+    this.bindPopup(popupContent).openPopup();
+  });
+});
 
     </script>
   </body>
