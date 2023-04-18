@@ -107,7 +107,7 @@
         {
           coordinates: [-33.92898, 18.445676],
           name: "Ciovita",
-          cyclistsCount: 3191,
+          cyclistsCount: 12,
           genre: "Individual",
           representative: "Charl Neethling",
           address: "https://www.ciovita.co.za",
@@ -170,6 +170,15 @@
           representative: "Angel N.1",
           address: "https://www.trailangels.co.za",
         },
+        {
+          coordinates: [-33.94818370463969, 18.52277421724254],
+          name: "Langa Bicycle Hub",
+          cyclistsCount: 210,
+          genre: "Club",
+          representative: "Mzikhona Mgedle",
+          contact: "0719702475",
+          address: "https://www.langabicyclehub.co.za/",
+        },
       ];
 
       const maxCyclistsCount = Math.max(
@@ -180,7 +189,7 @@
       );
 
       const maxRadius = 350;
-      const minRadius = 10;
+      const minRadius = 30;
 
       const calculateRadius = (
         maxNumber,
@@ -275,9 +284,11 @@ const Lanes = [{
     }
 }];
 var overlayProposals = L.layerGroup();
+
 var overlayMaps = {
   "Bicycle Lane Proposals": overlayProposals,
   "Cycling Groups": organisationsLayer
+
 };
 L.control.layers(null, basemaps, {collapsed: false}).addTo(map);
 L.control.layers(null, overlayMaps, {collapsed: false}).addTo(map);
@@ -347,10 +358,10 @@ var shops = [
 
 shops.forEach((shop) => {
   const circle = L.circle(shop.coordinates, {
-    color: "#FFAA22", // add the # symbol to the color value
-    fillColor: "#FFAA22",
-    fillOpacity: 0.9,
-    radius: 30,
+    color: "#997c7d", // add the # symbol to the color value
+    fillColor: "#997c7d",
+    fillOpacity: 0.6,
+    radius: 10,
   }).addTo(shopsLayer); // add the circle marker to the shopsLayer
 
   circle.on("click", function () { // use a simpler function expression
@@ -362,6 +373,51 @@ shops.forEach((shop) => {
         <tr><th>Representative</th><td>${shop.representative}</td></tr>
         <tr><th>Contact</th><td>N/A</td></tr> <!-- remove the reference to undefined property -->
         <tr><th>Website (if any)</th><td><div class="brown"><a href="${shop.address}">Website</a></td></tr> <!-- use shop.address instead of org.address -->
+      </table>
+    `;
+    this.bindPopup(popupContent).openPopup();
+  });
+});
+
+// Non-Motorised Active Group
+var shapsLayer = L.layerGroup().addTo(map); // create a new layer group to hold the markers
+
+var shaps = [
+  {
+    coordinates: [-33.92273962711486, 18.377506810119815],
+    name: "Promenade Mondays",
+    peopleCount: 68,
+    genre: "Skateboarding Group",
+    representative: "PM 1",
+    address: "https://www.instagram.com/promenademonday/",
+  },
+  {
+    coordinates: [-33.92294216814457, 18.377745521903055],
+    name: "Running Late Club",
+    peopleCount: 35,
+    genre: "Running Group",
+    representative: "Grace Evans",
+    address: "https://www.runninglateclub.com/",
+  },
+];
+
+shaps.forEach((shap) => {
+  const circle = L.circle(shap.coordinates, {
+    color: "#FFAA22", // add the # symbol to the color value
+    fillColor: "#FFAA22",
+    fillOpacity: 0.6,
+    radius: 30,
+  }).addTo(shapsLayer); // add the circle marker to the shopsLayer
+
+  circle.on("click", function () { // use a simpler function expression
+    const popupContent = `
+      <table>
+        <tr><th></th><th>${shap.name}</th></tr>
+        <tr><th>Genre</th><td>${shap.genre}</td></tr>
+        <tr><th>Number of People</th><td>${shap.peopleCount}</td></tr>
+        <tr><th>Representative</th><td>${shap.representative}</td></tr>
+        <tr><th>Contact</th><td>N/A</td></tr> <!-- remove the reference to undefined property -->
+        <tr><th>Website (if any)</th><td><div class="brown"><a href="${shap.address}">Website</a></td></tr> <!-- use shop.address instead of org.address -->
       </table>
     `;
     this.bindPopup(popupContent).openPopup();
