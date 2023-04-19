@@ -30,6 +30,23 @@
       }
       tr:nth-child(1) {
         background-color: #58ad49;
+        border: 1px solid o#193914;
+      }
+      tr.organisations:nth-child(1) {
+      background-color: #58ad49;
+      border: 1px solid black;
+      }
+      tr.proposals:nth-child(1) {
+      background-color: #6b3b2761;
+      border: 1px solid black;
+      }
+      tr.shops:nth-child(1) {
+      background-color: #997c7d;
+      border: 1px solid black;
+      }
+      tr.shaps:nth-child(1) {
+      background-color: #FFAA22;
+      border: 1px solid black;
       }
         .overlay-map {
       display: block;
@@ -108,15 +125,15 @@
           coordinates: [-33.92898, 18.445676],
           name: "Ciovita",
           cyclistsCount: 12,
-          genre: "Individual",
+          genre: "Cycling Club",
           representative: "Charl Neethling",
           address: "https://www.ciovita.co.za",
         },
         {
           coordinates: [-33.969671, 18.474231],
-          name: "TKLA",
+          name: "TKLA x CCNIA",
           cyclistsCount: 3,
-          genre: "Group",
+          genre: "Social Cycle Group",
           representative: "Hayden Malan",
           address: "https://www.tk-l-a.com",
         },
@@ -124,7 +141,7 @@
           coordinates: [-34.03538681835805, 18.658927740543284],
           name: "Khaltsha Cycles",
           cyclistsCount: 130,
-          genre: "Club",
+          genre: "Cycling Club",
           representative: "Sindile Mavundla",
           contact: "0845512053",
           address: "https://www.khaltshacycles.co.za/",
@@ -142,7 +159,7 @@
           coordinates: [-33.928135, 18.423820],
           name: "East City Cycles",
           cyclistsCount: 465,
-          genre: "Club",
+          genre: "Cycling Club",
           representative: "Jarryd Haley",
           address: "https://www.eastcitycycles.com",
         },
@@ -150,7 +167,7 @@
           coordinates: [-33.9238, 18.41520],
           name: "Rook Cycles",
           cyclistsCount: 113,
-          genre: "Club",
+          genre: "Cycling Club",
           representative: "Pang (Surname)",
           address: "https://www.rookcycles.com",
         },
@@ -158,7 +175,7 @@
           coordinates: [-33.911729163379654, 18.39424392530954],
           name: "Mother Amateur Cycling Club",
           cyclistsCount: 329,
-          genre: "Club",
+          genre: "Cycling Club",
           representative: "Mat Keiser",
           address: "https://www.instagram.com/mother_amateur_bicycling_club/</td></tr>>website</a>",
         },
@@ -166,7 +183,7 @@
           coordinates: [-33.99713886723101, 18.45176222264877],
           name: "Trail Angels",
           cyclistsCount: 141,
-          genre: "Club",
+          genre: "Cycling Club",
           representative: "Angel N.1",
           address: "https://www.trailangels.co.za",
         },
@@ -174,7 +191,7 @@
           coordinates: [-33.94818370463969, 18.52277421724254],
           name: "Langa Bicycle Hub",
           cyclistsCount: 210,
-          genre: "Club",
+          genre: "Cycling Club",
           representative: "Mzikhona Mgedle",
           contact: "0719702475",
           address: "https://www.langabicyclehub.co.za/",
@@ -227,9 +244,9 @@ organisations.forEach((organisation) => {
     return function (e) {
       const popupContent = `
         <table>
-          <tr><th></th><th>${org.name}</th></tr>
-          <tr><th>Cyclist Genre</th><td>${org.genre}</td></tr>
-          <tr><th>Number of Cyclists</th><td>${org.cyclistsCount}</td></tr>
+          <tr class="organisations"><th></th><th>${org.name}</th></tr>
+          <tr><th>Group Genre</th><td>${org.genre}</td></tr>
+          <tr><th>Number of People</th><td>${org.cyclistsCount}</td></tr>
           <tr><th>Representative</th><td>${org.representative}</td></tr>
           <tr><th>Contact</th><td>${org.contact}</td></tr>
           <tr><th>Website (if any)</th><td><div class=\"brown\"><a href="${org.address}">Website</a></td></tr>
@@ -302,7 +319,7 @@ L.geoJSON(Lanes, {
     }
   },
   onEachFeature: function(feature, layer) {
-  var popupContent = `<table><tr><th>Proposal Name</th><td>${feature.properties.proposal}</td></tr><tr><th>Proposal Link</th><td>${feature.properties.link}</td></tr></table>`;
+  var popupContent = `<table><tr class="proposals"><th>Proposal Name</th><td>${feature.properties.proposal}</td></tr><tr><th>Proposal Link</th><td>${feature.properties.link}</td></tr></table>`;
   layer.bindPopup(popupContent, { closeButton: false, autoClose: true });
   layer.on({
     mouseover: function(e) {
@@ -333,7 +350,6 @@ var shops = [
   {
     coordinates: [-33.928983228168, 18.44067957197337],
     name: "Woodstock Cycleworks",
-    cyclistsCount: 141,
     genre: "Bicycle Shop",
     representative: "Nils Hansen",
     address: "https://www.woodstockcycleworks.com/",
@@ -341,7 +357,6 @@ var shops = [
   {
     coordinates: [-34.03567664054036, 18.471177489234417],
     name: "Bridge Cycles",
-    cyclistsCount: 141,
     genre: "Bicycle Shop",
     representative: "Anisa",
     address: "https://bridgecycles.co.za/",
@@ -349,7 +364,6 @@ var shops = [
   {
     coordinates: [-33.953723474491326, 18.479820053529338],
     name: "Everyday Cycle Supply Co",
-    cyclistsCount: 141,
     genre: "Bicycle Shop",
     representative: "David Malan",
     address: "https://everydaycyclesupplyco.com/",
@@ -367,9 +381,8 @@ shops.forEach((shop) => {
   circle.on("click", function () { // use a simpler function expression
     const popupContent = `
       <table>
-        <tr><th></th><th>${shop.name}</th></tr>
-        <tr><th>Cyclist Genre</th><td>${shop.genre}</td></tr>
-        <tr><th>Number of Cyclists</th><td>${shop.cyclistsCount}</td></tr>
+        <tr class="shops"><th></th><th>${shop.name}</th></tr>
+        <tr><th>Shop Genre</th><td>${shop.genre}</td></tr>
         <tr><th>Representative</th><td>${shop.representative}</td></tr>
         <tr><th>Contact</th><td>N/A</td></tr> <!-- remove the reference to undefined property -->
         <tr><th>Website (if any)</th><td><div class="brown"><a href="${shop.address}">Website</a></td></tr> <!-- use shop.address instead of org.address -->
@@ -412,7 +425,7 @@ shaps.forEach((shap) => {
   circle.on("click", function () { // use a simpler function expression
     const popupContent = `
       <table>
-        <tr><th></th><th>${shap.name}</th></tr>
+        <tr class="shaps"><th></th><th>${shap.name}</th></tr>
         <tr><th>Genre</th><td>${shap.genre}</td></tr>
         <tr><th>Number of People</th><td>${shap.peopleCount}</td></tr>
         <tr><th>Representative</th><td>${shap.representative}</td></tr>
