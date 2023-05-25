@@ -144,7 +144,7 @@
           genre: "Cycling Club",
           representative: "Sindile Mavundla",
           contact: "0845512053",
-          address: `https://www.khaltshacycles.co.za target=_blank`,
+          address: "https://www.khaltshacycles.co.za",
         },
                 {
           coordinates: [-33.96398083669696, 18.4695883714251],
@@ -249,7 +249,7 @@ organisations.forEach((organisation) => {
           <tr><th>Number of People</th><td>${org.cyclistsCount}</td></tr>
           <tr><th>Representative</th><td>${org.representative}</td></tr>
           <tr><th>Contact</th><td>${org.contact}</td></tr>
-          <tr><th>Website (if any)</th><td><div class=\"brown\"><a href="${org.address}">Website</a></td></tr>
+          <tr><th></th><td><div class=\"brown\"><a href="${org.address}/ target=_blank">Website</a></td></tr>
         </table>
       `;
       this.bindPopup(popupContent).openPopup();
