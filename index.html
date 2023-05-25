@@ -54,12 +54,11 @@
       .leaflet-control-layers {
       background-color: rgba(229, 248, 226, 0.186);
       width: 200px;
-      position: 'topright';
       }
       .leaflet-control-layers-selector {
       margin-top: 2px;
       color: #6b3b27;
-      position: 'topright';
+      position: relative;
       top: 1px;
       }
       .leaflet-control-layers-overlays label {
@@ -71,9 +70,8 @@
       text-decoration: none;
       }
       .leaflet-popup-content {
-      max-width: 300px;
+      max-width: 200px;
   }
-
     </style>
   </head>
   <body>
@@ -98,9 +96,9 @@
         scrollWheelZoom: true,
         zoomControl: false
       });
-
-
-      L.control.layers(basemaps).addTo(map);
+            L.control.zoom({
+    position: 'topright'
+}).addTo(map);
 
       const basemaps = {
         Base: L.tileLayer(
