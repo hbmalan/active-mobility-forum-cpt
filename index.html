@@ -73,6 +73,7 @@
       .leaflet-popup-content {
       max-width: 300px;
   }
+
     </style>
   </head>
   <body>
@@ -92,14 +93,12 @@
 
     <script>
       const map = L.map("map", {
-        center: [-29.163394, 23.976999],
+        center: [-31.224229, 23.967763],
         zoom: 6,
         scrollWheelZoom: true,
         zoomControl: false
       });
-      L.control.zoom({
-      position: 'topright'
-      }).addTo(map);
+
 
       L.control.layers(basemaps).addTo(map);
 
