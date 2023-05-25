@@ -122,6 +122,7 @@
 
       var organisations = [
         {
+          img: "img/1.png",
           coordinates: [-33.92898, 18.445676],
           name: "Ciovita",
           cyclistsCount: 12,
@@ -244,7 +245,7 @@ organisations.forEach((organisation) => {
     return function (e) {
       const popupContent = `
         <table>
-          <tr class="organisations"><th></th><th>${org.name}</th></tr>
+          <tr class="organisations"><th><img src=${org.img} style=width:150px></th><th>${org.name}</th></tr>
           <tr><th>Group Genre</th><td>${org.genre}</td></tr>
           <tr><th>Number of People</th><td>${org.cyclistsCount}</td></tr>
           <tr><th>Representative</th><td>${org.representative}</td></tr>
