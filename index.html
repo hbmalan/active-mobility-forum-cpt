@@ -144,7 +144,7 @@
           genre: "Cycling Club",
           representative: "Sindile Mavundla",
           contact: "0845512053",
-          address: "https://www.khaltshacycles.co.za",
+          address: `"https://www.khaltshacycles.co.za" target="_blank"`,
         },
                 {
           coordinates: [-33.96398083669696, 18.4695883714251],
@@ -385,7 +385,7 @@ shops.forEach((shop) => {
         <tr><th>Shop Genre</th><td>${shop.genre}</td></tr>
         <tr><th>Representative</th><td>${shop.representative}</td></tr>
         <tr><th>Contact</th><td>N/A</td></tr> <!-- remove the reference to undefined property -->
-        <tr><th>Website (if any)</th><td><div class="brown"><a href="${shop.address}/ target=_blank">Website</a></td></tr> <!-- use shop.address instead of org.address -->
+        <tr><th></th><td><div class="brown"><a href="${shop.address}/ target=_blank">Website</a></td></tr> <!-- use shop.address instead of org.address -->
       </table>
     `;
     this.bindPopup(popupContent).openPopup();
