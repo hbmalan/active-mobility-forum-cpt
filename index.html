@@ -134,6 +134,7 @@
           address: "https://www.ciovita.co.za",
         },
         {
+          img: "img/4R.png",
           coordinates: [-32.978843, 27.902677],
           name: "The 4Room House",
           cyclistsCount: 15,
@@ -142,6 +143,7 @@
           address: ".",
         },
          {
+          img: "img/SF.png",
           coordinates: [-26.193, 28.037586],
           name: "Street Friends",
           cyclistsCount: 120,
@@ -150,14 +152,16 @@
           address: ".",
         },
          {
+          img: "img/ACC.png",
           coordinates: [-26.0993022, 28.1098620],
-          name: "Alexandra Bike Club",
+          name: "Alexandra Cycling Club",
           cyclistsCount: 192,
           genre: "Social Cycle Group",
           representative: "Chef 1",
           address: ".",
         },
         {
+          img: "img/BS.png",
           coordinates: [-26.1238508, 28.0194909],
           name: "Bicycle Stokvel",
           cyclistsCount: 2842,
@@ -166,6 +170,7 @@
           address: ".",
         },
          {
+          img: "img/BB.png",
           coordinates: [-26.19479618, 28.0344103],
           name: "Banditz Bicycle Club",
           cyclistsCount: 200,
@@ -174,6 +179,7 @@
           address: ".",
         },
           {
+          img: "img/TKLA.png",
           coordinates: [-33.969671, 18.474231],
           name: "TKLA x CCNIA",
           cyclistsCount: 3,
@@ -192,7 +198,7 @@
           address: "https://www.khaltshacycles.co.za",
         },
         {
-          img: "img/ECC.png",
+          img: "img/ECC.PNG",
           coordinates: [-33.928135, 18.423820],
           name: "East City Cycles",
           cyclistsCount: 465,
@@ -210,6 +216,7 @@
           address: "https://www.rookcycles.com",
         },
         {
+          img: "img/MA.png",
           coordinates: [-33.911729163379654, 18.39424392530954],
           name: "Mother Amateur Cycling Club",
           cyclistsCount: 329,
@@ -227,7 +234,7 @@
           address: "https://www.trailangels.co.za",
         },
         {
-          img: "img/LBH.png",
+          img: "img/LBH.PNG",
           coordinates: [-33.94818370463969, 18.52277421724254],
           name: "Langa Bicycle Hub",
           cyclistsCount: 210,
@@ -288,7 +295,6 @@ organisations.forEach((organisation) => {
           <tr><th>Group Genre</th><td>${org.genre}</td></tr>
           <tr><th>Number of People</th><td>${org.cyclistsCount}</td></tr>
           <tr><th>Representative</th><td>${org.representative}</td></tr>
-//           <tr><th>Contact</th><td>${org.contact}</td></tr>
           <tr><th></th><td><div class=\"brown\"><a href="${org.address}/ target=_blank">Website</a></td></tr>
         </table>
       `;
@@ -384,7 +390,7 @@ for (let i in overlayMaps) {
 }
 
 // Shops
-var shopsLayer = L.layerGroup().addTo(map); // create a new layer group to hold the markers
+var shopsLayer = L.layerGroup().addTo(map); // create a new layer group to hold the markers <tr><th>Contact</th><td>${org.contact}</td></tr>        
 
 var shops = [
   {
